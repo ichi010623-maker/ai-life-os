@@ -1,0 +1,67 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ============================================================
+   AI Life OS · 全局基础样式
+   ============================================================ */
+
+@layer base {
+  :root {
+    /* 深色为默认，与 manifest theme_color 对齐 */
+    color-scheme: dark;
+
+    --background: 240 10% 4%;
+    --foreground: 0 0% 98%;
+    --border: 240 4% 16%;
+    --muted: 240 5% 11%;
+    --muted-foreground: 240 5% 65%;
+    --primary: 262 83% 58%;
+    --primary-foreground: 0 0% 98%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* iOS PWA 启用 viewport-fit=cover 后才能生效 */
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family:
+      -apple-system, BlinkMacSystemFont, 'SF Pro Display',
+      'PingFang SC', 'Helvetica Neue', 'Microsoft YaHei', sans-serif;
+    font-feature-settings: 'cv11', 'ss01';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+/* ============================================================
+   iOS 安全区工具类（PWA Standalone 必备）
+   使用：在 topbar/footer 加 safe-top / safe-bottom
+   ============================================================ */
+
+.safe-top {
+  padding-top: env(safe-area-inset-top, 0);
+}
+.safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+.safe-left {
+  padding-left: env(safe-area-inset-left, 0);
+}
+.safe-right {
+  padding-right: env(safe-area-inset-right, 0);
+}
+
+/* ============================================================
+   PWA 启动期间隐藏滚动条抖动
+   ============================================================ */
+html.pwa-boot {
+  overflow: hidden;
+}

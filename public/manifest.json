@@ -1,0 +1,59 @@
+{
+  "name": "AI Life OS",
+  "short_name": "Life OS",
+  "description": "个人专属 AI 全局操作系统 · 任务 / 财务 / 产品 / 健康 / 知识",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#09090b",
+  "theme_color": "#09090b",
+  "lang": "zh-CN",
+  "dir": "ltr",
+  "categories": ["productivity", "lifestyle", "health", "finance"],
+  "icons": [
+    {
+      "src": "/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icons/icon-512-maskable.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/icons/apple-touch-icon-180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Capture",
+      "short_name": "Capture",
+      "description": "用一句话自动归类到任意模块",
+      "url": "/?capture=open",
+      "icons": [{ "src": "/icons/shortcut-capture.png", "sizes": "96x96", "type": "image/png" }]
+    },
+    {
+      "name": "Tasks",
+      "short_name": "Tasks",
+      "url": "/tasks"
+    },
+    {
+      "name": "Finance",
+      "short_name": "Finance",
+      "url": "/finance"
+    }
+  ]
+}
