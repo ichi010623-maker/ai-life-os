@@ -28,12 +28,9 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { cn } from '@/lib/utils';
-import {
-  daysUntilExpiry,
-} from '@/actions/pantry';
-import { deleteFoodStockItem, updateFoodStockQuantity } from '@/actions/pantry';
 import type { FoodCategory, FoodStockItem } from '@/types';
 import { CreateFoodModal } from './CreateFoodModal';
+import { daysUntilExpiry } from '@/lib/dates';
 
 // ============================================================
 // Constants

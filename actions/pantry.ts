@@ -1,6 +1,7 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
+import { daysUntilExpiry } from '@/lib/dates';
 import { z } from 'zod';
 import { generateObject } from 'ai';
 import { createOpenAI } from '@ai-sdk/openai';
@@ -71,13 +72,6 @@ export type FoodStockFilters = {
   category?: FoodCategory;
   status?: FoodStockStatus;
 };
-
-/** 距离过期天数（负数 = 已过期 N 天） */
-export function daysUntilExpiry(iso: string): number {
-  const now = Date.now();
-  const exp = new Date(iso).getTime();
-  return Math.ceil((exp - now) / (1000 * 60 * 60 * 24));
-}
 
 function applyStatusFilter(
   items: FoodStockItem[],
