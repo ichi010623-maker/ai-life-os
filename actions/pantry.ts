@@ -3,7 +3,13 @@
 import { revalidatePath } from 'next/cache';
 import { z } from 'zod';
 import { generateObject } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
+
+// Google Gemini 提供的 OpenAI 兼容端点
+const google = createOpenAI({
+  baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
+});
 import { createClient } from '@/lib/supabase/server';
 import type { FoodCategory, FoodStockItem } from '@/types';
 
@@ -323,7 +329,7 @@ export async function generateAIRecipe(
 
   // 3) 调用 LLM
   const { object } = await generateObject({
-    model: google('gemini-1.5-flash'),
+    model: google.chat('gemini-1.5-flash'),
     schema: RecipeSchema,
     system: RECIPE_SYSTEM_PROMPT,
     prompt: userPrompt,

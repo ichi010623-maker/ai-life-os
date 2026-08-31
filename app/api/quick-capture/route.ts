@@ -1,6 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { generateObject } from 'ai';
-import { google } from '@ai-sdk/google';
+import { createOpenAI } from '@ai-sdk/openai';
+
+// Google Gemini 提供的 OpenAI 兼容端点
+// 复用 @ai-sdk/openai 客户端，避开 @ai-sdk/google 的版本兼容问题
+const google = createOpenAI({
+  baseURL: 'https://generativelanguage.googleapis.com/v1beta/openai/',
+  apiKey: process.env.GOOGLE_GENERATIVE_AI_API_KEY!,
+});
 import { z } from 'zod';
 import { createClient } from '@/lib/supabase/server';
 
@@ -250,7 +257,7 @@ export async function POST(request: NextRequest) {
 
     // 3. LLM 结构化分类
     const { object: intent } = await generateObject({
-      model: google('gemini-1.5-flash'),
+      model: google.chat('gemini-1.5-flash'),
       schema: CaptureIntentSchema,
       system: SYSTEM_PROMPT,
       prompt: input,
